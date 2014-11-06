@@ -1,0 +1,21 @@
+<div>
+    <div class="input-group">
+      
+        <input type="text" ng-model="asyncSelected" placeholder="Type the tags in order of importance. Hit search when ready." typeahead="tag for tag in getLocation($viewValue)" typeahead-loading="loadingLocations" class="form-control" typeahead-on-select="onSelect($item, $model, $label)" typeahead-wait-ms="400" typeahead-min-length='1'>
+        <div class="input-group-btn">
+            <button class="btn btn-default" ng-click="submitSearchTag(selected)" ng-disabled="hasTags()">
+            <i class="glyphicon glyphicon-search" ng-hide="loadingLocations"></i>
+            <i ng-show="loadingLocations" class="glyphicon glyphicon-refresh spinner" ></i>
+            </button>
+        </div>
+    </div>
+  
+    <div class="search_tags clickable">
+        <span ng-repeat="tag in selected" class="badge_posts" ng-click="removeTag(tag)">{{tag.name}} <i class="glyphicon glyphicon-remove"></i>
+        </span>
+    </div>
+</div>
+
+<!-- 
+future implementation
+<input type="text" ng-bind="tag.value" value="{{tag.value}}"> -->

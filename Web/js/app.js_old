@@ -1,0 +1,99 @@
+// main controller
+var recomApp = angular
+	.module('StackRecommend', ['ui.router'])
+	.factory('data', ['$http', function($http){
+		var baseUrl = "http://api.stackexchange.com/2.2/";
+		var usersApi = 'users?order=desc&sort=reputation';
+		var siteUrl = "&site=stackoverflow";
+		var byName = "&inname=";
+		var appKey = "&key=XuUgyTQEsGuu1avMOxxnRw((";	
+
+		// make data available to other modules and controller
+	 	var o = {
+	 		users:[],
+	 		posts:[],
+	 		temp: '',
+	 		choosenUser:''
+	  	};
+
+	  	o.getUsers = function(searchUserString) {
+	  		// check if it is a user id or string
+	  		var url = baseUrl + usersApi + siteUrl + appKey + byName + searchUserString;
+		    return $http.get(url).then(function(res){
+		      return res.data;
+		    });
+		};
+
+	  	return o;
+	}])
+	.config([
+		// router stuff
+		'$stateProvider',
+		'$urlRouterProvider',
+		function($stateProvider, $urlRouterProvider) {
+			// redirect home if different address
+			$urlRouterProvider.otherwise('/')
+			// the program states
+			$stateProvider
+				.state('home', {
+					url: '/',
+					templateUrl: 'templates/home.html',
+					controller: 'MainCtrl'
+				})
+				.state('chooseUser', {
+					url:'/chooseUser/{searchUserString}',
+					templateUrl:'templates/chooseUser.html',
+					controller: 'MainCtrl',
+					resolve: {
+					  	post: ['$stateParams', 'data', function($stateParams, data) {
+					    	return data.get($stateParams.searchUserString);
+					  	}]
+					}	
+				})
+				.state('posts', {
+					url:'/posts',
+					templateUrl:'templates/chooseUser.html',
+					controller: 'MainCtrl'
+				});
+		}]);
+
+recomApp.controller('MainCtrl', [
+'$scope',
+'data',
+'$location',
+function($scope, data, $location){
+
+	// add the factory properties to global scope
+  	$scope.users = data.users
+
+
+  	$scope.addUser = function() {
+  		$scope.users.push({'user_id':5, 'Name':'asa', 'reputation':44, 'gravatar':'https://www.gravatar.com/avatar/bd42b746d79be5dd325a8e94bc00ac58?s=128&d=identicon&r=PG', 'tags':[]});
+  	};
+
+  	$scope.userNameID = '';
+  	$scope.searchUserString = '';
+
+  	$scope.searchUserId = function(){
+  		if($scope.userNameID === '') { 
+  			return; 
+  		}
+  		$scope.searchUserString = $scope.userNameID;
+  		$scope.userNameID = '';
+
+  		$location.path('/chooseUser/'+$scope.searchUserString);
+  		//$scope.temp = data.getUsers($scope.searchUserString);
+
+  		// $scope.users = [
+		  //   {'user_id':2, 'Name':'asa', 'reputation':44, 'gravatar':'https://www.gravatar.com/avatar/bd42b746d79be5dd325a8e94bc00ac58?s=128&d=identicon&r=PG', 'tags':[]},
+		  // 	{'user_id':1, 'Name':'dasd', 'reputation':1, 'gravatar':'https://www.gravatar.com/avatar/bd42b746d79be5dd325a8e94bc00ac58?s=128&d=identicon&r=PG', 'tags':['tag1', 'tag2']},
+		  // 	{'user_id':3, 'Name':'sada', 'reputation':55, 'gravatar':'https://www.gravatar.com/avatar/bd42b746d79be5dd325a8e94bc00ac58?s=128&d=identicon&r=PG', 'tags':['tag1', 'tag2']},
+		  // 	{'user_id':4, 'Name':'das', 'reputation':66, 'gravatar':'https://www.gravatar.com/avatar/bd42b746d79be5dd325a8e94bc00ac58?s=128&d=identicon&r=PG', 'tags':['tag1', 'tag2']}
+		  // 	];
+  	};
+
+  	$scope.choosenID = '';
+  	$scope.chooseUser = function(user) {
+  		$scope.choosenID = user.user_id;
+  	};
+}]);

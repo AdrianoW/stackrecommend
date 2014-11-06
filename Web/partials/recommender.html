@@ -1,0 +1,40 @@
+<div ng-controller='RecomModelCtrl'>
+
+<section id="recommend_header">
+   <div>
+           <div class="row">
+                    <div class="col-lg-12 text-center">
+                        <h2 class="section-heading">Recommended Posts</h2>
+                        <!-- <h3 class="section-subheading text-muted">
+                            Select the recommender type -->
+                    </div>
+            </div>
+              <!-- <div class="row">
+                    <div class="container-fluid">
+                        <div class="row row-centered">
+                            <div class="col-md-2 col-sm-3 col-centered col-top" ng-repeat="model in models.getModelsList() | orderBy: 'name':true " ng-show="UP.loaded && UP.tags.length>0">
+                                <div class="card-recommender" ng-class="{ 'active' : model.selected}">
+                                    <a href="" ng-click="models.selectModel(model.name)" > 
+                                        <i class="fa fa-2x" ng-class="models.getModelIcon(model.name)"></i>
+                                        <h5>{{model.name}}</h5>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div> -->
+       <div class="row row-centered margin_top_small">
+           <div class="section-subheading">
+           Tags:
+           <span ng-repeat="tags in UP.tags | limitTo:5" class="badge_posts">{{tags.name}}</span> 
+            </div>
+       </div>
+    </div>
+
+<sr-loading></sr-loading>
+</section>
+    
+<div ng-include="models.currModel.url">
+</div> 
+
+</div>

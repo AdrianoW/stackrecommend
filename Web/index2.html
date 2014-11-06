@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html ng-app="ui.bootstrap.demo"> 
+<head lang="en">
+    <meta charset="UTF-8">
+<link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon" />
+
+  <!-- <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.18/angular.js"></script> -->
+  <!-- <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.18/angular-sanitize.js"></script> -->
+  <!-- <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.css"> -->
+<!-- Latest compiled and minified CSS -->
+<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css"> -->
+  <!-- ui-select files -->
+
+  <!-- <script src="demo.js"></script> -->
+
+  <!-- Select2 theme -->
+  <!-- <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/select2/3.4.5/select2.css"> -->
+
+  <!--
+    Selectize theme
+    Less versions are available at https://github.com/brianreavis/selectize.js/tree/master/dist/less
+  -->
+  <!-- <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.8.5/css/selectize.default.css"> -->
+  <!-- <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.8.5/css/selectize.bootstrap2.css"> -->
+  <!-- <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.8.5/css/selectize.bootstrap3.css"> -->
+<link rel="stylesheet" href="css/bootstrap.min.css">
+<link rel="stylesheet" href="css/srecommender.css">
+    <title></title>
+
+  
+</head>
+<body>
+
+
+<script type="text/ng-template" id="customTemplate.html">
+  <a>
+      <img ng-src="http://upload.wikimedia.org/wikipedia/commons/thumb/{{match.model.flag}}" width="16">
+      <span bind-html-unsafe="match.label | typeaheadHighlight:query"></span>
+  </a>
+</script>
+<div class='container-fluid' ng-controller="TypeaheadCtrl" style="background-color: white;">
+
+    <h4>Static arrays</h4>
+    <pre>Model: {{selected | json}}</pre>
+    <input type="text" ng-model="selected" typeahead="state for state in states | filter:$viewValue | limitTo:8" class="form-control">
+
+    <div class="">
+      <label><input type="checkbox" name="" ng-model="noID">Aparece FDP</label>
+    </div>
+    {{noID}}
+
+    <div  ng-show="noID">
+    
+      <div class="input-group" id="search_tags">
+        <input type="text" ng-model="asyncSelected" placeholder="Type the tags of interest" typeahead="tag for tag in getLocation($viewValue)" typeahead-loading="loadingLocations" class="form-control" typeahead-on-select="onSelect($item, $model, $label)" typeahead-wait-ms="100" typeahead-min-length='1'>
+        <i ng-show="loadingLocations" class="glyphicon glyphicon-refresh spinner"></i>
+      </div>
+      
+      <div ng-repeat="tag in selected" id="tags_weights">
+          <span>
+            {{tag.name}} - <input type="text" ng-bind="tag.value" value="{{tag.value}}"> <span ng-click="removeTag(tag)">X</span></input>
+          </span>
+      </div>
+    </div>
+
+    <h4>Custom templates for results</h4>
+    <pre>Model: {{customSelected | json}}</pre>
+    <input type="text" ng-model="customSelected" placeholder="Custom template" typeahead="state as state.name for state in statesWithFlags | filter:{name:$viewValue}" typeahead-template-url="customTemplate.html" class="form-control">
+</div>
+
+
+
+<script src="js/utils.js" type="text/javascript" charset="utf-8"></script>
+<script src="bower_components/angular/angular.min.js" type="text/javascript" charset="utf-8" ></script>
+<script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js" type="text/javascript" charset="utf-8" ></script>
+<script src="js/app2.js"></script>
+
+
+
+
+
+
+
+
+<div class="uk-container uk-container-center uk-text-center uk-margin-large-top">
+            contact me at <a href="mailto:adrianowalmeida@gmail.com?subject=feedback" "email me">adrianowalmeida@gmail.com</a>
+</div>
+
+
+
+</body>
+
+</html>

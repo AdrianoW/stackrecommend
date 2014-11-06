@@ -1,0 +1,35 @@
+<!-- Portfolio Grid Section -->
+<section id="selectUser_section">
+    <div class="container-fluid">
+        <div class="row search-block">
+            <div class="col-lg-12 text-center">
+                <h2 class="section-heading" ng-hide="noId">Who are you?</h2>
+                <h2 class="section-heading" ng-show="noId">Your interest</h2>
+                <div class="row">
+                    <div class="col-lg-6 col-lg-offset-3">
+                       <form ng-submit="Users.fetchClients(Users.userSearchString)" role="search" >
+                            <div class="input-group" ng-hide="noId">
+                                <input type="text" class="form-control" placeholder="Insert Stack Overflow ID or User Name" name="srch-term" id="srch-term" ng-model="Users.userSearchString">
+                                <div class="input-group-btn">
+                                    <button class="btn btn-default" type="submit" ><i class="glyphicon glyphicon-search"></i></button>
+                                </div>
+                            </div>
+
+                        </form>
+                        <sr-tags-search ng-show="noId" submit-search-tag="submitSearchTag(tagsList)"></sr-tags-search>
+                        <div class="checkbox">  
+                            <label>
+                              <input type="checkbox" name="noId" ng-model="noId">
+                                I don't have an ID. Recommend me using tags.
+                            </label>
+                        </div>
+                    </div>    
+                </div>
+            </div>
+        </div>
+
+        <div class="row" ng-show="Users.items.length && !noId">
+            <user-selection users="Users" select-user="selectUser(user)"></user-selection>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,36 @@
+<section id="contact-section">
+<div class="container-fluid">
+    <div class="row" ng-show="!sent">
+        <h3 class="col-md-6 col-md-push-3">Doubts, critics or suggestions, drop me a line!</h3>
+    </div>
+    <div class="row" ng-show="!sent">
+        <form name="userForm" ng-submit="submitForm(userForm.$valid)" novalidate>
+            <div class="col-md-6 col-md-push-3">
+                <div class="form-group">
+                    <label>Your Name *</label>
+                    <input type="text" placeholder="Your name" class="form-control" ng-model="name" ng-class="{ 'has-error' : userForm.name.$invalid && !userForm.name.$pristine }" name="name"  ng-model-options="{ updateOn: 'blur' }" required> 
+                    <p ng-show="userForm.name.$invalid && !userForm.name.$pristine" class="help-block">You name is required.</p>
+                </div>
+                <div class="form-group">
+                    <label>Your Email *</label>
+                    <input type="email" placeholder="name@addres.com" class="form-control" ng-model="email" name="email" ng-class="{ 'has-error' : userForm.email.$invalid && !userForm.email.$pristine }"  ng-model-options="{ updateOn: 'blur' }" required>
+                    <p ng-show="userForm.email.$invalid && !userForm.email.$pristine" class="help-block">You email is not correct.</p>
+                </div>
+                <div class="form-group">
+                    <label>Your Message *</label>
+                    <textarea class="form-control" id="form-h-t" cols="100" rows="9" ng-model="message" name="message" ng-class="{ 'has-error' : userForm.message.$invalid && !userForm.message.$pristine }" required></textarea>
+                    <p ng-show="userForm.message.$invalid && !userForm.message.$pristine" class="help-block">You message is required.</p>
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="btn btn-xs contact-submit" ng-disabled="userForm.$invalid" analytics-on analytics-event="Contact" analytics-category="click">Submit</button>
+                </div>
+            </div>
+        </form> 
+    </div>
+    <div ng-show="sent" id="contact-thanks">
+        <div class="row row-centered">
+            <h3>Thank you for your contact!</h3>
+        </div>
+    </div>
+</div>
+</section>

@@ -1,0 +1,52 @@
+<div ng-show="!(loc.getCurrLocation().length === 1)">
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container">
+         <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a href="/" title="Stack Recommend" class="navbar-brand hidden-xs"><img src="images/logo.svg" alt="Logo Big" id="logo_menu_big"></a>
+                <a href="/" title="Stack Recommend" class="navbar-brand-small navbar-brand visible-xs"><img src="images/logo2.svg" alt="Logo Small" id="logo_menu_small"></a>
+<!--                <a class="navbar-brand page-scroll" href="#page-top">Start Bootstrap</a>-->
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div id='sharespace'>
+                <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://recommender.im" data-text="ReDiscover Stack Overflow with" data-size="large" data-count="none">Tweet</a>
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+                
+                <script src="//platform.linkedin.com/in.js" type="text/javascript">
+                  lang: en_US
+                </script>
+                <script type="IN/Share" data-url="http://recommender.im"></script>
+
+                <div class="fb-like" data-href="http://recommender.im" data-layout="button" data-action="recommend" data-show-faces="false" data-share="false"></div>
+            </div>
+
+            <div class="collapse navbar-collapse" id="navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="hidden">
+                        <a href="#page-top"></a>
+                    </li>
+                    <li ng-class="{ 'active' : loc.isCurrLocation('/selectUser') || loc.isCurrLocation('/user')}" >
+                         <a href="#/selectUser">Recommender</a>
+                    </li>
+                    <li ng-class="{ 'active' : loc.isCurrLocation('/project')}">
+                         <a href="#/project">Project</a>
+                     </li>
+                     <li ng-class="{ 'active' : loc.isCurrLocation('/contact')}">
+                         <a href="#/contact">Contact</a>
+                     </li>
+                    <!-- <li ng-class="{ 'active' : loc.isCurrLocation('/login')}">
+                         <a href="#/login">Login</a>
+                     </li> -->
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+     </div>
+   </nav>
+</div>

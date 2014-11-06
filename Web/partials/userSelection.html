@@ -1,0 +1,41 @@
+<div>
+    <div class="row row-centered">
+        <div class="col-md-4 col-sm-6 col-centered item_user" ng-repeat="user in Users.items | filter:userFilter">
+            <div class="users-card">
+                <a href="{{user.link}}" target="_blank">
+                <div class="users-photo col-centered">
+                    <img class="img-responsive img-circle" ng-src="{{user.profile_image}}">
+                    </div>
+                <h4>{{user.display_name}}</h4>
+                <div class="row">
+                    Rep: {{user.reputation}}    
+                </div>
+                <div class="row">
+                    <div class="badges">
+                        <span>
+                            <span title="{{user.badge_counts.gold}} gold badges">
+                                <span class="badge badge_gold">
+                                {{user.badge_counts.gold}}
+                                </span>
+                            </span>
+                            <span title="{{user.badge_counts.silver}} silver badges">
+                                <span class="badge badge_silver">
+                                {{user.badge_counts.silver}}
+                                </span>
+                            </span>
+                            <span title="{{user.badge_counts.bronze}} bronze badges">
+                                <span class="badge badge_bronze">
+                                {{user.badge_counts.bronze}}
+                                </span>
+                            </span>
+                        </span> badges
+                    </div>
+                </div>
+                </a>
+                <div class="row">
+                    <button class="btn me_button" ng-click="selectUser({user:user})"> That's me</button>
+                </div>   
+            </div>   
+        </div>
+    </div>
+</div>

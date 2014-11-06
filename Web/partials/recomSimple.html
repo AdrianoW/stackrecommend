@@ -1,0 +1,9 @@
+<section ng-controller="SimpleModelCtrl" id="post_section" class="bg-light-gray">
+    <div id="posts_list" class="row" ng-show="Posts.postsSimpleRecom.length >0">
+        <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+            <div ng-repeat="post in Posts.postsSimpleRecom | orderBy:'view_count':true">
+                <post-element></post-element>
+            </div>    
+        </div>
+    </div>
+</section>

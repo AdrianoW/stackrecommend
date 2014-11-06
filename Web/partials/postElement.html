@@ -1,0 +1,44 @@
+<!-- regular post -->
+<div class="hidden-xs post-element">
+    <a href="" ng-click="openPost(post, $index)">
+        <img class="pull-left users-photo" ng-src="{{post.owner.profile_image}}">
+        <h2 class="post-title">
+            {{unescape(post.title)}}
+        </h2>
+        <h4 class="post-subtitle"> 
+            <div class="row">
+                 Views: {{post.view_count}} <br><br>    
+                <span ng-repeat="tags in post.tags" class="badge_posts">{{tags}}</span>
+            </div>
+        </h4>
+    </a>
+    <p class="post-meta">Posted by <a href="{{post.owner.link}}" target="_blank">{{post.owner.display_name}}</a> on {{post.creation_date * 1000| date:'dd/MM/yyyy HH:mm'}}</p>
+</div>
+<!-- phone post -->
+<div class="visible-xs post-element">
+    <a href="{{post.link}}" target="_blank">
+    <div class="row">
+        <div class="post-title">
+                {{unescape(post.title)}}
+        </div>  
+    </div>
+    <div class="row">
+        <h4 class="post-subtitle"> 
+            <div class="col-xs-3">
+                <img class="img-responsive" ng-src="{{post.owner.profile_image}}">    
+            </div>
+            <div class="col-xs-9">
+                <div class="row">
+                    Views: {{post.view_count}}   
+                </div>
+                <div class="row tags">
+                    <span ng-repeat="tags in post.tags" class="badge_posts">{{tags}}</span>     
+                </div>
+            </div>
+        </h4>
+    </div>
+    <div class="row">
+        <p class="post-meta">Posted by <a href="{{post.owner.link}}" target="_blank">{{post.owner.display_name}}</a> on {{post.creation_date * 1000| date:'dd/MM/yyyy HH:mm'}}</p>
+    </div>
+</div>
+<hr>    

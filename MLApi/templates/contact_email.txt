@@ -1,0 +1,7 @@
+Hi {{to}},
+
+from:{{contact.name}}
+replyto:{{contact.email}}
+
+message:
+{{contact.message}}
